@@ -1,11 +1,15 @@
 require("dotenv").config();
 var fs = require('fs');
-var keys = require('./keys')
+var Spotify = require('node-spotify-api');
 var Twitter = require('twitter');
+var keys = require('./keys');
+
+
 var listTweets;
 var spotifySearch;
+
 myTweets();
-spotifyThisSong()
+spotifyThisSong();
  
 function myTweets(){
     var params = { 
@@ -16,7 +20,7 @@ function myTweets(){
     client.get('statuses/user_timeline', params, function(error, tweets, response) {
         if (!error) {
             for (var i = 0; i<tweets.length;i++){
-                var listTweets = ('\n' + "@" + params.screen_name + "\n" + "tweeted: " + tweets[i].text + "\n" + "on :" + tweets[i].created_at)
+                listTweets = ('\n' + "@" + params.screen_name + "\n" + "tweeted: " + tweets[i].text + "\n" + "on :" + tweets[i].created_at)
                 console.log(listTweets);
 
             }
@@ -25,9 +29,14 @@ function myTweets(){
 }
 
 function spotifyThisSong(){
-    search: function({ type: 'artist OR album OR track', query: 'My search query', limit: 20 }, callback);
     var spotify = new Spotify(keys.spotify);
-
+    spotify.search({ type: 'track', query: 'Surivial' }, function(err, data) {
+        if (err) {
+          return console.log('Error occurred: ' + err);
+        } 
+       
+      console.log(data); 
+      });
 }
 
 
