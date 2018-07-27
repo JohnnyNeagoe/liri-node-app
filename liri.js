@@ -1,14 +1,14 @@
 require("dotenv").config();
 var fs = require('fs');
-var Spotify = require('node-spotify-api');
+var Spotify = require('spotify');
 var Twitter = require('twitter');
 var keys = require('./keys');
-
-
+console.log(Twitter);
+console.log(Spotify);
 var listTweets;
 var spotifySearch;
 
-myTweets();
+//myTweets();
 spotifyThisSong();
  
 function myTweets(){
@@ -30,13 +30,14 @@ function myTweets(){
 
 function spotifyThisSong(){
     var spotify = new Spotify(keys.spotify);
-    spotify.search({ type: 'track', query: 'Surivial' }, function(err, data) {
-        if (err) {
-          return console.log('Error occurred: ' + err);
-        } 
-       
-      console.log(data); 
-      });
+    spotify.search({ type: 'track', query: 'Can"t take a joke' }, function(err, data) {
+        if ( err ) {
+            console.log('Error occurred: ' + err);
+            return;
+        }
+     
+        console.log()
+    });
 }
 
 
