@@ -1,1 +1,0 @@
-delclare module 'spotify';
