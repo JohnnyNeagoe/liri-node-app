@@ -8,8 +8,6 @@ var listTweets;
 var command = process.argv[2];
 var argument = process.argv[3];
 var loggedSearches = [];
-var pickOne = [];
-var pickAnother = [];
 
 function myTweets(){
     var params = { 
@@ -30,7 +28,7 @@ function myTweets(){
 }
 function spotifyThisSong(){
     if (argument == null) {
-		argument = 'The Sign';
+		argument == 'The Sign';
     }
     var spotify = new Spotify(keys.spotify);
     spotify.search({ type: 'track', query: argument, limit: 1 }, function(err, data) {
@@ -68,9 +66,8 @@ function doWhatItSays(){
         command = randomPick.split(",")[0].trim(); 
         argument = randomPick.split(",")[1].trim();
         choose();
-      })
-      
-}
+      });
+};
 function myHistory(){
     var divider = "\n------------------------------------------------------------\n\n";
     fs.appendFile("log.txt", loggedSearches + divider , function(err) {
@@ -82,7 +79,7 @@ function myHistory(){
 };
 function choose() {
 	switch(command) {
-		case 'my-tweets': // chosenOne.split(",").first
+		case 'my-tweets':
             myTweets();
 			break;
 		case 'spotify-this-song':
